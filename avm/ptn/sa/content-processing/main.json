@@ -6,25 +6,25 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.1.42791",
-      "templateHash": "13752365552502197179"
+      "templateHash": "194719983867736940"
     },
     "name": "Content Processing Solution Accelerator",
     "description": "Bicep template to deploy the Content Processing Solution Accelerator with AVM compliance."
   },
   "definitions": {
-    "Tag": {
+    "tagType": {
       "type": "object",
       "properties": {
-        "app": {
+        "App": {
           "type": "string",
           "metadata": {
-            "description": "Optional. The tag name."
+            "description": "Required. The tag name."
           }
         },
-        "location": {
+        "Location": {
           "type": "string",
           "metadata": {
-            "description": "Optional. The tag location."
+            "description": "Required. The tag location."
           }
         }
       }
@@ -118,13 +118,13 @@
       }
     },
     "tags": {
-      "$ref": "#/definitions/Tag",
+      "$ref": "#/definitions/tagType",
       "defaultValue": {
-        "app": "Content Processing Solution Accelerator",
-        "location": "[resourceGroup().location]"
+        "App": "Content Processing Solution Accelerator",
+        "Location": "[resourceGroup().location]"
       },
       "metadata": {
-        "description": "Optional. Tags to be applied to the resources."
+        "description": "Required. Tags to be applied to the resources."
       }
     },
     "useLocalBuild": {

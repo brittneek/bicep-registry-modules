@@ -249,6 +249,7 @@ param gptDeploymentCapacity = 80
 | [`contentUnderstandingLocation`](#parameter-contentunderstandinglocation) | string | Location for the content understanding service: WestUS | SwedenCentral | AustraliaEast. |
 | [`environmentName`](#parameter-environmentname) | string | Name of the environment to deploy the solution into. |
 | [`gptDeploymentCapacity`](#parameter-gptdeploymentcapacity) | int | Capacity of the GPT deployment: (minimum 10). |
+| [`tags`](#parameter-tags) | object | Tags to be applied to the resources. |
 
 **Optional parameters**
 
@@ -263,7 +264,6 @@ param gptDeploymentCapacity = 80
 | [`publicContainerImageEndpoint`](#parameter-publiccontainerimageendpoint) | string | The public container image endpoint. |
 | [`resourceGroupLocation`](#parameter-resourcegrouplocation) | string | The resource group location. |
 | [`resourceNameFormatString`](#parameter-resourcenameformatstring) | string | The resource name format string. |
-| [`tags`](#parameter-tags) | object | Tags to be applied to the resources. |
 | [`useLocalBuild`](#parameter-uselocalbuild) | bool | Set to true to use local build for container app images, otherwise use container registry images. |
 
 ### Parameter: `contentUnderstandingLocation`
@@ -287,6 +287,41 @@ Capacity of the GPT deployment: (minimum 10).
 - Required: Yes
 - Type: int
 - MinValue: 10
+
+### Parameter: `tags`
+
+Tags to be applied to the resources.
+
+- Required: No
+- Type: object
+- Default:
+  ```Bicep
+  {
+      App: 'Content Processing Solution Accelerator'
+      Location: '[resourceGroup().location]'
+  }
+  ```
+
+**Required parameters**
+
+| Parameter | Type | Description |
+| :-- | :-- | :-- |
+| [`App`](#parameter-tagsapp) | string | The tag name. |
+| [`Location`](#parameter-tagslocation) | string | The tag location. |
+
+### Parameter: `tags.App`
+
+The tag name.
+
+- Required: Yes
+- Type: string
+
+### Parameter: `tags.Location`
+
+The tag location.
+
+- Required: Yes
+- Type: string
 
 ### Parameter: `deploymentType`
 
@@ -365,41 +400,6 @@ The resource name format string.
 - Required: No
 - Type: string
 - Default: `'{0}avm-cps'`
-
-### Parameter: `tags`
-
-Tags to be applied to the resources.
-
-- Required: No
-- Type: object
-- Default:
-  ```Bicep
-  {
-      app: 'Content Processing Solution Accelerator'
-      location: '[resourceGroup().location]'
-  }
-  ```
-
-**Optional parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`app`](#parameter-tagsapp) | string | The tag name. |
-| [`location`](#parameter-tagslocation) | string | The tag location. |
-
-### Parameter: `tags.app`
-
-The tag name.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `tags.location`
-
-The tag location.
-
-- Required: Yes
-- Type: string
 
 ### Parameter: `useLocalBuild`
 

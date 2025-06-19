@@ -38,8 +38,8 @@ param enablePrivateNetworking bool = true
 param enableTelemetry bool = true
 //@description('Resource naming abbreviations')
 //param namingAbbrs object
-@description('Optional. Tags to be applied to the resources.')
-param tags TagType = {
+@description('Required. Tags to be applied to the resources.')
+param tags tagType = {
   App: 'Content Processing Solution Accelerator'
   Location: resourceGroup().location
 }
@@ -1892,10 +1892,10 @@ module avmContainerApp_API_update 'br/public:avm/res/app/container-app:0.17.0' =
 // ============ //
 // types       //
 // ============ //
-type TagType = {
-  @description('Optional. The tag name.')
+type tagType = {
+  @description('Required. The tag name.')
   App: string
-  @description('Optional. The tag location.')
+  @description('Required. The tag location.')
   Location: string
 }
 // Add your outputs here
