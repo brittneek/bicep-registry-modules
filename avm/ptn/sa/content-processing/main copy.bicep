@@ -93,7 +93,7 @@ module avmNetworkSecurityGroup 'br/public:avm/res/network/network-security-group
     tags: tags
     enableTelemetry: enableTelemetry
     diagnosticSettings: [
-      // { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
+      { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
     ]
     securityRules: []
   }
@@ -109,7 +109,7 @@ module avmNetworkSecurityGroup_Containers 'br/public:avm/res/network/network-sec
     tags: tags
     enableTelemetry: enableTelemetry
     diagnosticSettings: [
-      // { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
+      { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
     ]
     securityRules: [
       //Inbound Rules
@@ -192,7 +192,7 @@ module avmNetworkSecurityGroup_Admin 'br/public:avm/res/network/network-security
     tags: tags
     enableTelemetry: enableTelemetry
     diagnosticSettings: [
-      // { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
+      { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
     ]
     securityRules: []
   }
@@ -214,7 +214,7 @@ module avmVirtualNetwork 'br/public:avm/res/network/virtual-network:0.7.0' = if 
     enableTelemetry: enableTelemetry
     addressPrefixes: ['10.0.0.0/8']
     diagnosticSettings: [
-      // { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
+      { workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId }
     ]
     subnets: [
       {
@@ -388,24 +388,24 @@ module avmPrivateDnsZoneContainerRegistry 'br/public:avm/res/network/private-dns
 // ============== //
 
 // ========== Application insights ========== //
-// module avmAppInsightsLogAnalyticsWorkspace './modules/app-insights.bicep' = {
-//   //name: format(deployment_param.resource_name_format_string, abbrs.managementGovernance.logAnalyticsWorkspace)
-//   params: {
-//     appInsightsName: '${namingAbbrs.managementGovernance.applicationInsights}${solutionPrefix}'
-//     location: resourceGroupLocation
-//     //diagnosticSettings: [{ useThisWorkspace: true }]
-//     skuName: 'PerGB2018'
-//     applicationType: 'web'
-//     disableIpMasking: false
-//     disableLocalAuth: false
-//     flowType: 'Bluefield'
-//     kind: 'web'
-//     logAnalyticsWorkspaceName: '${namingAbbrs.managementGovernance.logAnalyticsWorkspace}${solutionPrefix}'
-//     publicNetworkAccessForQuery: 'Enabled'
-//     requestSource: 'rest'
-//     retentionInDays: 30
-//   }
-// }
+module avmAppInsightsLogAnalyticsWorkspace './modules/app-insights.bicep' = {
+  //name: format(deployment_param.resource_name_format_string, abbrs.managementGovernance.logAnalyticsWorkspace)
+  params: {
+    appInsightsName: '${namingAbbrs.managementGovernance.applicationInsights}${solutionPrefix}'
+    location: resourceGroupLocation
+    //diagnosticSettings: [{ useThisWorkspace: true }]
+    skuName: 'PerGB2018'
+    applicationType: 'web'
+    disableIpMasking: false
+    disableLocalAuth: false
+    flowType: 'Bluefield'
+    kind: 'web'
+    logAnalyticsWorkspaceName: '${namingAbbrs.managementGovernance.logAnalyticsWorkspace}${solutionPrefix}'
+    publicNetworkAccessForQuery: 'Enabled'
+    requestSource: 'rest'
+    retentionInDays: 30
+  }
+}
 
 // ========== Managed Identity ========== //
 module avmManagedIdentity './modules/managed-identity.bicep' = {
@@ -841,7 +841,7 @@ module avmAiServices 'br/public:avm/res/cognitive-services/account:0.11.0' = {
     customSubDomainName: '${namingAbbrs.ai.aiServices}${solutionPrefix}'
     diagnosticSettings: [
       {
-        // workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId
+        workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId
       }
     ]
     disableLocalAuth: true
@@ -986,7 +986,7 @@ module avmAiServices_storage_hub 'br/public:avm/res/storage/storage-account:0.20
     diagnosticSettings: [
       {
         //workspaceResourceId: avmLogAnalyticsWorkspace.outputs.resourceId
-        // workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId
+        workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId
       }
     ]
     blobServices: {
@@ -996,7 +996,7 @@ module avmAiServices_storage_hub 'br/public:avm/res/storage/storage-account:0.20
       diagnosticSettings: [
         {
           //workspaceResourceId: avmLogAnalyticsWorkspace.outputs.resourceId
-          // workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId
+          workspaceResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceResourceId
         }
       ]
     }
@@ -1063,7 +1063,7 @@ module avmAiHub 'br/public:avm/res/machine-learning-services/workspace:0.12.1' =
     associatedKeyVaultResourceId: avmKeyVault.outputs.resourceId
     associatedStorageAccountResourceId: avmAiServices_storage_hub.outputs.resourceId
     associatedContainerRegistryResourceId: avmContainerRegistry.outputs.resourceId
-    // associatedApplicationInsightsResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.applicationInsightsId
+    associatedApplicationInsightsResourceId: avmAppInsightsLogAnalyticsWorkspace.outputs.applicationInsightsId
     enableTelemetry: enableTelemetry
     kind: 'Hub'
     connections: [
@@ -1138,10 +1138,10 @@ module avmContainerAppEnv 'br/public:avm/res/app/managed-environment:0.11.2' = {
     managedIdentities: { systemAssigned: true }
     appLogsConfiguration: {
       destination: 'log-analytics'
-      // logAnalyticsConfiguration: {
-      // customerId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
-      // sharedKey: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspacePrimaryKey
-      // }
+      logAnalyticsConfiguration: {
+        customerId: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspaceId
+        sharedKey: avmAppInsightsLogAnalyticsWorkspace.outputs.logAnalyticsWorkspacePrimaryKey
+      }
     }
     workloadProfiles: [
       {
