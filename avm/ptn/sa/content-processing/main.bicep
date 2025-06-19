@@ -39,9 +39,9 @@ param enableTelemetry bool = true
 //@description('Resource naming abbreviations')
 //param namingAbbrs object
 @description('Optional. Tags to be applied to the resources.')
-param tags Tag = {
-  app: 'Content Processing Solution Accelerator'
-  location: resourceGroup().location
+param tags TagType = {
+  App: 'Content Processing Solution Accelerator'
+  Location: resourceGroup().location
 }
 @description('Optional. Set to true to use local build for container app images, otherwise use container registry images.')
 param useLocalBuild bool = false
@@ -1892,11 +1892,11 @@ module avmContainerApp_API_update 'br/public:avm/res/app/container-app:0.17.0' =
 // ============ //
 // types       //
 // ============ //
-type Tag = {
+type TagType = {
   @description('Optional. The tag name.')
-  app: string
+  App: string
   @description('Optional. The tag location.')
-  location: string
+  Location: string
 }
 // Add your outputs here
 
