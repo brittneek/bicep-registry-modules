@@ -24,8 +24,6 @@ param gptModelVersion string = '2024-08-06'
 @minValue(10)
 @description('Required. Capacity of the GPT deployment: (minimum 10).')
 param gptDeploymentCapacity int
-// @description('Optional. Location used for Azure Cosmos DB, Azure Container App deployment')
-// param secondaryLocation string = 'EastUs2'
 @description('Optional. The public container image endpoint.')
 param publicContainerImageEndpoint string = 'cpscontainerreg.azurecr.io'
 @description('Optional. The resource group location.')
@@ -36,12 +34,10 @@ param resourceNameFormatString string = '{0}avm-cps'
 param enablePrivateNetworking bool = true
 @description('Optional. Enable/Disable usage telemetry for module.')
 param enableTelemetry bool = true
-//@description('Resource naming abbreviations')
-//param namingAbbrs object
-@description('Required. Tags to be applied to the resources.')
+@description('Optional. Tags to be applied to the resources.')
 param tags tagType = {
-  App: 'Content Processing Solution Accelerator'
-  Location: resourceGroup().location
+  app: 'Content Processing Solution Accelerator'
+  location: resourceGroup().location
 }
 @description('Optional. Set to true to use local build for container app images, otherwise use container registry images.')
 param useLocalBuild bool = false
@@ -1893,10 +1889,10 @@ module avmContainerApp_API_update 'br/public:avm/res/app/container-app:0.17.0' =
 // types       //
 // ============ //
 type tagType = {
-  @description('Required. The tag name.')
-  App: string
-  @description('Required. The tag location.')
-  Location: string
+  @description('Optional. app name for the resource.')
+  app: string
+  @description('Optional. Location tag for the resource.')
+  location: string
 }
 // Add your outputs here
 
