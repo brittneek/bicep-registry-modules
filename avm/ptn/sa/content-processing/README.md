@@ -380,27 +380,6 @@ Tags to be applied to the resources.
   }
   ```
 
-**Required parameters**
-
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| [`app`](#parameter-tagsapp) | string | app name for the resource. |
-| [`location`](#parameter-tagslocation) | string | Location tag for the resource. |
-
-### Parameter: `tags.app`
-
-app name for the resource.
-
-- Required: Yes
-- Type: string
-
-### Parameter: `tags.location`
-
-Location tag for the resource.
-
-- Required: Yes
-- Type: string
-
 ### Parameter: `useLocalBuild`
 
 Set to true to use local build for container app images, otherwise use container registry images.
