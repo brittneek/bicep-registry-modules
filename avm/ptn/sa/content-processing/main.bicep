@@ -166,6 +166,19 @@ module avmNetworkSecurityGroup_Containers 'br/public:avm/res/network/network-sec
           destinationAddressPrefix: '*'
         }
       }
+      {
+        name: 'Deny-hop-outbound'
+        properties: {
+          access: 'Deny'
+          direction: 'Outbound'
+          priority: 200
+          protocol: '*'
+          sourcePortRange: '*'
+          destinationPortRanges: ['3389', '22']
+          sourceAddressPrefix: 'VirtualNetwork'
+          destinationAddressPrefix: '*'
+        }
+      }
     ]
   }
 }
