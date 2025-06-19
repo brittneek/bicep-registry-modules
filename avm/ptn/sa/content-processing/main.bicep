@@ -39,7 +39,7 @@ param enableTelemetry bool = true
 //@description('Resource naming abbreviations')
 //param namingAbbrs object
 @description('Optional. Tags to be applied to the resources.')
-param tags object = {
+param tags Tag = {
   app: 'Content Processing Solution Accelerator'
   location: resourceGroup().location
 }
@@ -1890,9 +1890,14 @@ module avmContainerApp_API_update 'br/public:avm/res/app/container-app:0.17.0' =
 }
 
 // ============ //
-// Outputs      //
+// types       //
 // ============ //
-
+type Tag = {
+  @description('Optional. The tag name.')
+  app: string
+  @description('Optional. The tag location.')
+  location: string
+}
 // Add your outputs here
 
 // @description('The resource ID of the resource.')
