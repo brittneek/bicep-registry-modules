@@ -35,7 +35,7 @@ param enablePrivateNetworking bool = true
 @description('Optional. Enable/Disable usage telemetry for module.')
 param enableTelemetry bool = true
 @description('Optional. Tags to be applied to the resources.')
-param tags tagType = {
+param tags object = {
   app: 'Content Processing Solution Accelerator'
   location: resourceGroup().location
 }
@@ -1885,15 +1885,6 @@ module avmContainerApp_API_update 'br/public:avm/res/app/container-app:0.17.0' =
   ]
 }
 
-// ============ //
-// types       //
-// ============ //
-type tagType = {
-  @description('Optional. app name for the resource.')
-  app: string
-  @description('Optional. Location tag for the resource.')
-  location: string
-}
 // Add your outputs here
 
 // @description('The resource ID of the resource.')

@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.1.42791",
-      "templateHash": "4746359773340582910"
+      "templateHash": "14817833869644631169"
     },
     "name": "Content Processing Solution Accelerator",
     "description": "Bicep template to deploy the Content Processing Solution Accelerator with AVM compliance."
@@ -18,13 +18,13 @@
         "app": {
           "type": "string",
           "metadata": {
-            "description": "Optional. app name for the resource."
+            "description": "Required. app name for the resource."
           }
         },
         "location": {
           "type": "string",
           "metadata": {
-            "description": "Optional. Location tag for the resource."
+            "description": "Required. Location tag for the resource."
           }
         }
       }
@@ -44437,8 +44437,8 @@
       },
       "dependsOn": [
         "avmManagedIdentity",
-        "[format('avmPrivateDnsZoneStorages[{0}]', 0)]",
         "[format('avmPrivateDnsZoneStorages[{0}]', 2)]",
+        "[format('avmPrivateDnsZoneStorages[{0}]', 0)]",
         "avmVirtualNetwork"
       ]
     },

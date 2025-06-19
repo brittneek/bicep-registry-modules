@@ -380,7 +380,7 @@ Tags to be applied to the resources.
   }
   ```
 
-**Optional parameters**
+**Required parameters**
 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
